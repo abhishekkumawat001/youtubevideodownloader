@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.DS_Store
+Thumbs.db
+downloads/
+*.part
+*.ytdl
+*.temp
+*.tmp
+*.log
+tree/
