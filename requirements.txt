@@ -1,2 +1,14 @@
+# Core dependencies
 yt-dlp>=2024.3.10
 tqdm>=4.66.0
+
+# Configuration support
+PyYAML>=6.0
+
+# Additional utilities
+requests>=2.31.0
+
+# Development dependencies (optional)
+# pytest>=7.0.0
+# black>=23.0.0
+# flake8>=6.0.0
