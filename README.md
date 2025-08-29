@@ -1,62 +1,93 @@
-# Course Material Downloader
+# YouTube Video Downloader
 
-Lightweight utilities for downloading YouTube videos/playlists with yt-dlp and analyzing downloaded files.
+A Python-based YouTube video downloader with command-line interface support.
 
-## Contents
- - youtube.py — full-featured CLI and interactive YouTube/playlist downloader (uses yt-dlp; supports manual quality, format listing, playlists, resume/archive).
- - analyze_videos.py — inspects local video files (via ffprobe/mediainfo) to report resolution and rough size heuristics.
+## Features
 
-## Requirements
-- Python 3.9+
-- Packages:
-  - yt-dlp
-  - tqdm
-- Optional tools for analysis/merging:
-  - FFmpeg (ffmpeg/ffprobe on PATH)
-  - Mediainfo (optional fallback)
+- Download YouTube videos in various quality formats
+- Command-line interface for easy usage
+- Video analysis capabilities
+- Support for different output formats
+- Error handling and logging
 
-Install Python packages:
+## Project Structure
 
-```powershell
+```
+youtubevideodownloader/
+├── downloader/
+│   ├── cli.py          # Command-line interface
+│   ├── core.py         # Core downloading functionality
+│   └── utils.py        # Utility functions
+├── analyze_videos.py   # Video analysis tools
+├── youtube.py          # Main YouTube interface
+├── test_1080p.py      # Testing for 1080p downloads
+├── requirements.txt    # Python dependencies
+└── README.md          # This file
+```
+
+## Installation
+
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd youtubevideodownloader
+```
+
+2. Install required dependencies:
+```bash
 pip install -r requirements.txt
 ```
 
-Install FFmpeg on Windows:
-- Winget: `winget install FFmpeg.FFmpeg`
-- Chocolatey: `choco install ffmpeg`
-- Or download from https://ffmpeg.org and add to PATH
+## Usage
 
-## Quick start
-Interactive mode:
-```powershell
-python .\youtube.py -i
-```
-Single video at 1080p to default Downloads/YouTube_Downloads:
-```powershell
-python .\youtube.py "<YOUTUBE_URL>" -q 1080p -f mp4 --skip-path-setup
-```
-Playlist download (confirm prompt, optional manual selection):
-```powershell
-python .\youtube.py "<PLAYLIST_URL>" -q best -m --skip-path-setup
-```
-Analyze a folder of videos:
-```powershell
-python .\analyze_videos.py -p .\deeplearning
+### Command Line Interface
+
+```bash
+python -m downloader.cli <youtube-url> [options]
 ```
 
-List available formats (no download):
-```powershell
-python .\youtube.py "<YOUTUBE_URL>" --list-formats-only --skip-path-setup
-# For a playlist URL, this shows formats for the first item only
+### Python Script
+
+```python
+from downloader.core import download_video
+
+# Example usage
+url = "https://www.youtube.com/watch?v=VIDEO_ID"
+download_video(url)
 ```
 
-## Notes
-- youtube.py uses a robust default path on Windows (Downloads/YouTube_Downloads). You can override with -o.
-- Without FFmpeg, yt-dlp may fetch separate video/audio at high resolutions or fall back to lower quality.
-- For login-restricted or age-restricted content, consider passing cookies to yt-dlp (not wired here by default).
+### Video Analysis
 
-## Ideas for improvement
-- Unify duplicate downloader scripts into one module; keep one CLI.
-- Add download archive/resume flags and better logging.
-- Add config file (JSON/ENV) and batch URL input support.
-- Optional: write subtitles/thumbnails/metadata via yt-dlp postprocessors.
+```bash
+python analyze_videos.py <video-path>
+```
+
+## Requirements
+
+See `requirements.txt` for all dependencies. Main requirements include:
+- yt-dlp or pytube
+- requests
+- Other dependencies as listed
+
+## Testing
+
+Run the 1080p test:
+```bash
+python test_1080p.py
+```
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Submit a pull request
+
+## License
+
+
+
+## Disclaimer
+
+This tool is for educational purposes only. Please respect YouTube's Terms of Service and copyright laws when downloading content.
+
